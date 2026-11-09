@@ -20,8 +20,14 @@ class APIStatusTests(APITestCase):
         self.assertEqual(response.json(), {
             'status': 'ok',
             'application': 'CSC325 CI/CD Pipeline',
+            'message': 'Ready for the four-stage pipeline!',
         })
 
     def test_status_rejects_post(self):
         response = self.client.post(reverse('api-status'), {}, format='json')
         self.assertEqual(response.status_code, 405)
+
+    def test_status_includes_pipeline_message(self):
+        response = self.client.get(reverse('api-status'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['message'], 'Ready for the four-stage pipeline!')

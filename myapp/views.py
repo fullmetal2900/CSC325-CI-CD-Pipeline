@@ -11,4 +11,4 @@ from rest_framework.response import Response
 
 @api_view(['GET'])
 def api_status(request):
-    return Response({'status': 'ok', 'application': 'CSC325 CI/CD Pipeline'})
+    return Response({'status': 'ok', 'application': 'CSC325 CI/CD Pipeline', 'message': 'Ready for the four-stage pipeline!'})
